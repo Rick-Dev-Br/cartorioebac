@@ -69,6 +69,8 @@ int registro() // Função responsavel por cadastrar os usuários no sistema
 		printf("\n\n\tOs dados cadastrados estão corretos?\n");
 		printf("\t1 - Sim, os dados estão corretos.\n");//opcao mantém os dados salvos 
 		printf("\t2 - Não, escreva os dados novamente.\n");//opcao exclui os dados recém criados 
+		printf("\t3 - Cadastra outro usuário? \n");
+		printf("\t4 - Voltar para o menu principal \n ");
 		printf("\tSelecione uma opção:  ");
 		scanf("%d", &salvar);//define o valor da variavel inteira salva 
 		
@@ -86,6 +88,21 @@ int registro() // Função responsavel por cadastrar os usuários no sistema
 			system("pause");
 			system("cls");
 		}
+		else if (salvar==3)
+		{
+			FILE *file;
+			file = fopen(arquivo,"w");
+			fprintf(file,cpf);
+			fclose(file);
+		}
+		else if (salvar==4)
+		{
+			printf("\n\tVoltando para o menu principal\n\t");
+			system("pause");
+			system("cls");
+			break;
+		}
+		
 		else //senao faça essa 
 		{
 			printf("\n\tOpção inválida, cadastro reiniciado.\n\n");
