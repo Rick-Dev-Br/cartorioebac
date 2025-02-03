@@ -6,64 +6,102 @@
 						
 int registro() // Função responsavel por cadastrar os usuários no sistema
 {
-	//Inicio criação de variáveis/string
-	char arquivo[40];
-	char cpf[40]; //char representa um caractere do tipo texto
-	char nome[40];
-	char sobrenome[40];
-	char cargo[40];
-	//Final da criação de variáveis/string
+	int laco=1;//criar o laco para poder gerar opcao de ir e voltar 
+	for (laco=1;laco=1;)//for para repetir o laco do tipo inteiro 
+		{
+			
+		//Inicio criação de variáveis/string
+		char arquivo[40];
+		char cpf[40]; //char representa um caractere do tipo texto
+		char nome[40];
+		char sobrenome[40];
+		char cargo[40];
+		char resp[20]="sim";
+		//Final da criação de variáveis/string
 	
-	printf("Digite o CPF a ser cadastrado: "); //Coletando informações do usuário
-	scanf("%s", cpf); //%s refere-se a string
+		printf("Digite o CPF a ser cadastrado: "); //Coletando informações do usuário
+		scanf("%s", cpf); //%s refere-se a string
 	
-	strcpy(arquivo, cpf); // Responsavel por copiar o valores das string
+		strcpy(arquivo, cpf); // Responsavel por copiar o valores das string
 	
-	FILE *file; // Cria o arquivo
-	file = fopen(arquivo, "w"); // abre o arquivo e o "w"cria um novo arquivo
-	fprintf(file,cpf); // Salvo o valor da variável
-	fclose(file); // Fecho o arquivo
+		FILE *file; // Cria o arquivo
+		file = fopen(arquivo, "w"); // abre o arquivo e o "w"cria um novo arquivo
+		fprintf(file,cpf); // Salvo o valor da variável
+		fclose(file); // Fecho o arquivo
 		
 
-	file = fopen(arquivo, "a"); //abre o arquivo, e o"a" atualiza o arquivo criado
-	fprintf(file,"\n"); // Salva o valor da variável eo "\n" pula uma linha 
-	fclose(file); // Fecha o arquivo
+		file = fopen(arquivo, "a"); //abre o arquivo, e o"a" atualiza o arquivo criado
+		fprintf(file,"\n"); // Salva o valor da variável eo "\n" pula uma linha 
+		fclose(file); // Fecha o arquivo
 	
-	printf("Digite o nomes a ser cadastrado: "); //Coletando informações do usuário
-	scanf("%s",nome); //Scanf salva a opcao do usuário
+		printf("Digite o nomes a ser cadastrado: "); //Coletando informações do usuário
+		scanf("%s",nome); //Scanf salva a opcao do usuário
 	
-	file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo 
-	fprintf(file,nome); //Salva o valor da variável 
-	fclose(file); // Fecha o arquivo 
+		file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo 
+		fprintf(file,nome); //Salva o valor da variável 
+		fclose(file); // Fecha o arquivo 
 	
-	file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo criado 
-	fprintf(file, "\n"); //Salva o valor da variável, "\n" pula uma linha
-	fclose(file); //Fecha o arquivo 
+		file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo criado 
+		fprintf(file, "\n"); //Salva o valor da variável, "\n" pula uma linha
+		fclose(file); //Fecha o arquivo 
 	
-	printf("Digite o sobrenome a ser cadastrado: "); //Coletando informações do usuário
-	scanf("%s",sobrenome); //Scanf salva a opção do usuário
+		printf("Digite o sobrenome a ser cadastrado: "); //Coletando informações do usuário
+		scanf("%s",sobrenome); //Scanf salva a opção do usuário
 	
-	file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo
-	fprintf(file,sobrenome); //Salva o valor da variável 
-	fclose(file); //Fecha o arquivo
+		file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo
+		fprintf(file,sobrenome); //Salva o valor da variável 
+		fclose(file); //Fecha o arquivo
 	
-	file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo
-	fprintf(file, "\n"); //Salva o valor da variável, "\n" pula uma linha 
-	fclose(file); //Fecha o arquivo
+		file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo
+		fprintf(file, "\n"); //Salva o valor da variável, "\n" pula uma linha 
+		fclose(file); //Fecha o arquivo
 	
-	printf("Digite o cargo a ser cadastrado: "); //Coletando irformações do usuário
-	scanf("%s",cargo); //Scanf salva a opção do usuário 
+		printf("Digite o cargo a ser cadastrado: "); //Coletando irformações do usuário
+		scanf("%s",cargo); //Scanf salva a opção do usuário 
 	
-	file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo
-	fprintf(file,cargo); //Salva o valor da variável
-	fclose(file);
+		file = fopen(arquivo, "a"); //Abre o arquivo, e o "a" atualiza o arquivo
+		fprintf(file,cargo); //Salva o valor da variável
+		fclose(file);
 	
-	system("pause"); //Pausa o sistema até o cliente continuar
+		system("pause");
+	
+		int salvar =0; //criando variável do tipo inteiro com o nome "salvar"
+		printf("\n\n\tOs dados cadastrados estão corretos?\n");
+		printf("\t1 - Sim, os dados estão corretos.\n");//opcao mantém os dados salvos 
+		printf("\t2 - Não, escreva os dados novamente.\n");//opcao exclui os dados recém criados 
+		printf("\tSelecione uma opção:  ");
+		scanf("%d", &salvar);//define o valor da variavel inteira salva 
+		
+		if(salvar==1)//se for a opcao 1 faca isso 
+		{
+			printf("\n\tOs dados foram salvos com sucesso.\n");
+			printf("\tRetornando ao menu principal.\n\t");
+			system("pause");
+			break;//sai do laco retorna ao menu
+		}
+		else if (salvar==2) //se for 2 faça essa opcao 
+		{
+			remove(arquivo);
+			printf("\n\tOs dados não foram salvos.\n\tReiniciando o registro\n\t");
+			system("pause");
+			system("cls");
+		}
+		else //senao faça essa 
+		{
+			printf("\n\tOpção inválida, cadastro reiniciado.\n\n");
+			system("pause");
+		}
+		
+		
+		
+	
+		}
+	
 }
 
 int consultar() //Função responsavel por fazer consultas dos usuários
 {
-	setlocale(LC_ALL, "Portuguese"); //Definindo a linguagem
+	setlocale(LC_ALL, "Portuguese"); //Definindo a linguage
 	
 	char cpf[40];
 	char conteudo[200]; //char conteudo[200] são as informações do usuário 
