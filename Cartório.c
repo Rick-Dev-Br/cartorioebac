@@ -3,12 +3,12 @@
 #include <locale.h> //biblioteca de alocações de texto por região 
 #include <string.h> //biblioteca responsavel por cuidar das string
 #include <stdbool.h> //biblioteca que manipula variáveis IF
-						
+					
 int registro() // Função responsavel por cadastrar os usuários no sistema
 {
 	int laco=1;//criar o laco para poder gerar opcao de ir e voltar 
 	for (laco=1;laco=1;)//for para repetir o laco do tipo inteiro 
-		{
+	{
 			
 		//Inicio criação de variáveis/string
 		char arquivo[40];
@@ -72,7 +72,7 @@ int registro() // Função responsavel por cadastrar os usuários no sistema
 		printf("\t3 - Cadastra outro usuário? \n");
 		printf("\t4 - Voltar para o menu principal \n ");
 		printf("\tSelecione uma opção:  ");
-		scanf("%d", &salvar);//define o valor da variavel inteira salva 
+		scanf("%d", &salvar);//define o valor da variavel inteira salva &salvar é uma variável no laco que me permite criar varias opcoes 
 		
 		if(salvar==1)//se for a opcao 1 faca isso 
 		{
@@ -88,14 +88,17 @@ int registro() // Função responsavel por cadastrar os usuários no sistema
 			system("pause");
 			system("cls");
 		}
-		else if (salvar==3)
+		else if (salvar==3)//cria um novo arquivo
 		{
+			printf("\n\tRedirecionando para cadastrar novo usuário!\n\t");
+			system("pause");
 			FILE *file;
 			file = fopen(arquivo,"w");
 			fprintf(file,cpf);
 			fclose(file);
+			system("cls");
 		}
-		else if (salvar==4)
+		else if (salvar==4)//volta para o menu 
 		{
 			printf("\n\tVoltando para o menu principal\n\t");
 			system("pause");
@@ -109,10 +112,7 @@ int registro() // Função responsavel por cadastrar os usuários no sistema
 			system("pause");
 		}
 		
-		
-		
-	
-		}
+	}
 	
 }
 
@@ -146,6 +146,11 @@ int consultar() //Função responsavel por fazer consultas dos usuários
 	fclose(file); // caso não feche o arquivo nao sera possivel deletar
 
 }
+ void fechar() //void pode ser usado para a funcao exit
+{
+    printf("O programa será encerrado.\n");
+    exit(0);//funcao que encerra o programa (0) importante ter o 0
+}
 
 int deletar() //Função responsavel por deletar usuários
 {
@@ -174,52 +179,74 @@ int deletar() //Função responsavel por deletar usuários
 	
 }
 
-
 int main() //Int main é a função principal do programa  
 { 
     int opcao=0; //Definindo variáveis
    	int laco=1; //Um laço de repetição 
+   	char senhadigitada[]="a";
+   	int comparacao;
+   		
+   	printf("### Cartório da EBAC ###\n\n");
+   	printf("Login de administrador!\n\nDigite a sua senha: ");
+   	scanf("%s",senhadigitada);	
    	
-   	for(laco=1;laco=1;) //for uma estrutura de repetição
+   	comparacao = strcmp(senhadigitada, "admin");
+   	
+   	if(comparacao ==0)
    	{
+	   		system("cls");
+   			for(laco=1;laco=1;) //for uma estrutura de repetição
+   			{
 	     
-		system("cls"); //limpa a tela do usuário	                                                         
+			system("cls"); //limpa a tela do usuário	                                                         
     	
-		setlocale(LC_ALL, "Portuguese"); //Definindo a linguagem
+			setlocale(LC_ALL, "Portuguese"); //Definindo a linguagem
     
-		printf("### Cartório da EBAC ###\n\n"); //Inicil do menu	
-		printf("Escolha a opção desejada do menu:\n\n"); //Falando com o usuário
-		printf("\t1 - Registrar nomes\n"); //\t Deixa uma paragrafo 
-		printf("\t2 - Consultar nomes\n"); // Falando com usuário
-		printf("\t3 - Deletar nomes\n\n"); //Fim do menu
-		printf("Opção:");
+			printf("### Cartório da EBAC ###\n\n"); //Inicil do menu	
+			printf("Escolha a opção desejada do menu:\n\n"); //Falando com o usuário
+			printf("\t1 - Registrar nomes\n"); //\t Deixa uma paragrafo 
+			printf("\t2 - Consultar nomes\n"); // Falando com usuário
+			printf("\t3 - Deletar nomes\n"); //Fim do menu
+			printf("\t4 - Fechar o programa\n\n");
+			printf("Opção:");
 	
-		scanf("%d", &opcao); //Armezenando a escolha do usuário
+			scanf("%d", &opcao); //Armezenando a escolha do usuário
 	
-		system("cls"); //Limpa a tela do usuário
+			system("cls"); //Limpa a tela do usuário
 	
-		switch(opcao) //Switch é muito pratico, inicio da seleção do menu
-		{
-			case 1: //Diz ao switch oque ele deve fazer caso seja opção 1
-			registro(); //Chamada de funções
-			break;
+			switch(opcao) //Switch é muito pratico, inicio da seleção do menu
+			{
+				case 1: //Diz ao switch oque ele deve fazer caso seja opção 1
+				registro(); //Chamada de funções
+				break;
 			
-			case 2:
-			consultar();
-    		break;
+				case 2:
+				consultar();
+    			break;
+					
+				case 3:
+				deletar();
+    			break;
+    			
+    			case 4:
+    			fechar();
+    			break;
 				
-			case 3:
-			deletar();
-    		break;
+ 				default:		
+				printf("Essa opção não está disponivel!\n");
+				system("pause");
+				break;	 
+				//Fim da seleção
 			
- 			default:		
-			printf("Essa opção não está disponivel!\n");
-			system("pause");
-			break;	
-			//Fim da seleção
-		
+			}
 		}
+	}
 	
-	} 
+else 
+	printf("Senha incorreta!");
+	
 
-}
+} 
+	
+	
+
