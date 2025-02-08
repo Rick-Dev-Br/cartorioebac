@@ -148,7 +148,7 @@ int consultar() //Função responsavel por fazer consultas dos usuários
 }
  void fechar() //void pode ser usado para a funcao exit
 {
-    printf("O programa será encerrado.\n");
+    printf("O programa será encerrado,obrigado por utilizar!\n");
     exit(0);//funcao que encerra o programa (0) importante ter o 0
 }
 
